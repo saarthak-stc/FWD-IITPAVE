@@ -1,0 +1,71 @@
+2026-10-21 13:19:05,485 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:19:05,487 INFO Starting FWD import
+2026-10-21 13:19:05,488 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 6 header/invalid lines
+2026-10-21 13:19:09,039 INFO Created workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:19:09,169 INFO Created worksheet: RHS
+2026-10-21 13:19:10,504 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:19:10,590 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:19:10,680 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:19:10,768 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:19:12,014 INFO FWD import completed successfully
+2026-10-21 13:26:47,288 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:26:47,289 INFO Starting FWD import
+2026-10-21 13:26:47,290 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 6 header/invalid lines
+2026-10-21 13:26:50,313 INFO Created workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:26:50,408 INFO Created worksheet: RHS
+2026-10-21 13:26:51,860 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:26:51,961 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:26:52,059 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:26:52,155 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:26:53,038 INFO FWD import completed successfully
+2026-10-21 13:43:59,474 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:43:59,475 INFO Starting FWD import
+2026-10-21 13:43:59,475 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 7 header/invalid lines
+2026-10-21 13:44:03,342 INFO Opened workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:44:04,573 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:44:04,662 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:44:04,750 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:44:04,866 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:44:06,135 INFO FWD import completed successfully
+2026-10-21 13:44:56,048 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:44:56,048 INFO Starting FWD import
+2026-10-21 13:44:56,049 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 7 header/invalid lines
+2026-10-21 13:44:58,726 INFO Opened workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:44:59,883 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:44:59,951 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:45:00,029 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:45:00,153 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:45:00,990 INFO FWD import completed successfully
+2026-10-21 13:45:46,718 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:45:46,719 INFO Starting FWD import
+2026-10-21 13:45:46,720 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 7 header/invalid lines
+2026-10-21 13:45:49,140 INFO Opened workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:45:49,709 ERROR FWD import failed
+Traceback (most recent call last):
+  File "C:\STC-Saarthak\Pranjil\INPUT.py", line 293, in main
+    run(args.input, args.workbook)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\STC-Saarthak\Pranjil\INPUT.py", line 240, in run
+    raise PermissionError(
+    ...<2 lines>...
+    )
+PermissionError: Workbook is open read-only: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx. Close the workbook in Excel and remove any stale Excel lock file before retrying.
+2026-10-21 13:47:54,012 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:47:54,012 INFO Starting FWD import
+2026-10-21 13:47:54,013 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 7 header/invalid lines
+2026-10-21 13:47:57,160 INFO Opened workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:47:58,419 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:47:58,501 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:47:58,593 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:47:58,677 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:47:59,363 INFO FWD import completed successfully
+2026-10-21 13:51:00,727 INFO Log file: C:\STC-Saarthak\Pranjil\INPUT.log
+2026-10-21 13:51:00,727 INFO Starting FWD import
+2026-10-21 13:51:00,729 INFO Read 9 valid measurement rows from C:\STC-Saarthak\Pranjil\MANOHARPUR TO DAUSA RHS.fwd (utf-8); skipped 7 header/invalid lines
+2026-10-21 13:51:05,334 INFO Created workbook: C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx
+2026-10-21 13:51:05,466 INFO Created worksheet: RHS
+2026-10-21 13:51:06,481 INFO Wrote output row 3: chainage=49000, grouped measurements=3
+2026-10-21 13:51:06,549 INFO Wrote output row 4: chainage=49200, grouped measurements=3
+2026-10-21 13:51:06,618 INFO Wrote output row 5: chainage=49500, grouped measurements=3
+2026-10-21 13:51:06,673 INFO Saved 3 output rows to C:\STC-Saarthak\Pranjil\Modulus_Calculation.xlsx (sheet RHS)
+2026-10-21 13:51:07,293 INFO FWD import completed successfully
