@@ -26,6 +26,7 @@ def get_logger(script_file):
         formatter = logging.Formatter(
             "%(asctime)s %(levelname)s [%(name)s] %(message)s"
         )
+        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
         file_handler = logging.FileHandler(LOG_PATH, encoding="utf-8")
         file_handler.setFormatter(formatter)
         console_handler = logging.StreamHandler()
