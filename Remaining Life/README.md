@@ -18,11 +18,11 @@ You can also supply just the filename as an optional argument:
 python "Remaining Life\RMN_LF.py" survey.xlsx
 ```
 
-The output is saved in the same folder as the source file, with `_RMN-LF` appended to its base name. For example:
+The output is saved in the `Remaining Life\Output` folder, which is created automatically if it does not already exist. The input filename's base name is used with `_RMN-LF` appended. For example:
 
 ```text
 Remaining Life\survey.xlsx
-    -> Remaining Life\survey_RMN-LF.xlsx
+    -> Remaining Life\Output\survey_RMN-LF.xlsx
 ```
 
 The input file is read only; the script creates a separate output workbook.

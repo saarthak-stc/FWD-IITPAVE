@@ -165,7 +165,7 @@ This script estimates the remaining life of pavement layers after applying seaso
 
 ## 5) Remaining Life/RMN_LF.py
 
-This standalone version calculates the same corrected moduli and section-level remaining-life results from a compact input file, without requiring the full `Modulus_Calculation.xlsx` worksheet. The output is saved beside the selected source file as `<input basename>_RMN-LF.xlsx` (for example, `survey_RMN-LF.xlsx` from `survey.xlsx`).
+This standalone version calculates the same corrected moduli and section-level remaining-life results from a compact input file, without requiring the full `Modulus_Calculation.xlsx` worksheet. The output is saved in `Remaining Life\Output` as `<input basename>_RMN-LF.xlsx`; the folder is created automatically if needed.
 
 Run it from the repository root or from the `Remaining Life` folder:
 

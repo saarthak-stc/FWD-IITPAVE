@@ -541,7 +541,9 @@ def main():
     boundaries = _read_boundaries()
     calculate_remaining_life(records, boundaries)
 
-    output_path = input_path.with_name(f"{input_path.stem}_RMN-LF.xlsx")
+    output_directory = SCRIPT_DIR / "Output"
+    output_directory.mkdir(exist_ok=True)
+    output_path = output_directory / f"{input_path.stem}_RMN-LF.xlsx"
     write_output(records, output_path)
     LOGGER.info("Remaining-life output saved to %s", output_path)
     print(f"Remaining-life output saved to: {output_path}")
