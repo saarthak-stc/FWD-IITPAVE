@@ -163,7 +163,32 @@ This script estimates the remaining life of pavement layers after applying seaso
 
 ---
 
-## 5) RMSE.py
+## 5) Remaining Life/RMN_LF.py
+
+This standalone version calculates corrected moduli and remaining-life results from a compact input file, without requiring the full `Modulus_Calculation.xlsx` worksheet. It runs IITPAVE independently for every input row and writes that row's results to the corresponding output row. The output is saved beside the selected source file as `<input basename>_RMN-LF.xlsx` (for example, `survey_RMN-LF.xlsx` from `survey.xlsx`).
+
+Run it from the repository root or from the `Remaining Life` folder:
+
+```powershell
+python "Remaining Life\RMN_LF.py" "Remaining Life\your-input.xlsx"
+```
+
+If no path is supplied, the script prompts for one. Excel inputs may be `.xlsx`, `.xlsm`, or `.xls`; text inputs may be tab-, comma-, or semicolon-delimited `.txt`, `.csv`, or `.tsv` files. Both formats need a header row and these eight fields:
+
+| Field | Accepted examples |
+| --- | --- |
+| Chainage in kilometres | `Chainage`, `Chainage (km)`, `A` |
+| Bituminous layer thickness in mm | `Bituminous Layer Thickness (mm)`, `M` |
+| Base layer thickness in mm | `Base Layer Thickness (mm)`, `N` |
+| Predicted bituminous modulus | `Bituminous (E1)`, `U` |
+| Predicted base modulus | `Base (E2)`, `V` |
+| Predicted sub-grade modulus | `Sub-Grade (E3)`, `W` |
+| Asphalt temperature | `Asphalt Temperature`, `AH` |
+| Season | `Season`, `AJ` |
+
+After reading the file, the script asks for chainage boundaries in kilometres, as the original remaining-life workflow does. IITPAVE and Microsoft Excel are required to perform the calculation and write the `.xlsx` result.
+
+## 6) RMSE.py
 
 ### What it does
 This script calculates the Root Mean Square Error (RMSE) between measured deflection data and theoretical deflections predicted by IITPAVE for a given set of moduli.
