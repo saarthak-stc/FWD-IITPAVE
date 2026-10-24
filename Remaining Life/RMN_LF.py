@@ -6,6 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import numpy as np
 import xlwings as xw
 
 
@@ -394,7 +395,6 @@ def calculate_remaining_life(records, numeric_boundaries):
 
     boundaries = numeric_boundaries + [max_chainage]
     section_number = 0
-    processed_records = 0
     for lower_km, upper_km in zip(boundaries, boundaries[1:]):
         section_records = [
             record
@@ -414,60 +414,68 @@ def calculate_remaining_life(records, numeric_boundaries):
             continue
 
         section_number += 1
-        for record in section_records:
-            moduli = [
-                record["corrected_bituminous"],
-                record["corrected_base"],
-                record["corrected_subgrade"],
-            ]
-            thicknesses = [
-                record["bituminous_thickness"],
-                record["base_thickness"],
-            ]
-            if any(modulus <= 0 for modulus in moduli):
-                raise ValueError(
-                    f"Corrected moduli must be positive at chainage "
-                    f"{record['chainage']}: {moduli!r}."
-                )
-
-            output_file = _run_iitpave(moduli, thicknesses)
-            fatigue_strain = _get_fatigue_strain(output_file)
-            rutting_strain = _get_rutting_strain(output_file)
-            if fatigue_strain <= 0 or rutting_strain <= 0:
-                raise ValueError(
-                    f"Invalid strains at chainage {record['chainage']}: "
-                    f"fatigue={fatigue_strain}, rutting={rutting_strain}."
-                )
-
-            fatigue_life = (
-                (0.711 * 10**-4)
-                * ((1 / fatigue_strain) ** 3.89)
-                * ((1 / moduli[0]) ** 0.854)
-                * (10**-6)
-            )
-            rutting_life = (
-                (1.41 * 10**-8) * ((1 / rutting_strain) ** 4.5337) * (10**-6)
-            )
-            record["section_results"] = [
+        bituminous_values = [row["corrected_bituminous"] for row in section_records]
+        base_values = [row["corrected_base"] for row in section_records]
+        subgrade_values = [row["corrected_subgrade"] for row in section_records]
+        bituminous_e, base_e, subgrade_e = (
+            float(np.quantile(values, 0.15))
+            for values in (bituminous_values, base_values, subgrade_values)
+        )
+        first_record = section_records[0]
+        thicknesses = [
+            first_record["bituminous_thickness"],
+            first_record["base_thickness"],
+        ]
+        if any(
+            (row["bituminous_thickness"], row["base_thickness"])
+            != tuple(thicknesses)
+            for row in section_records
+        ):
+            LOGGER.warning(
+                "Section %d contains varying layer thicknesses; IITPAVE will use "
+                "the first input row's thicknesses %r.",
                 section_number,
-                lower_km,
-                upper_km,
-                upper_km - lower_km,
-                *moduli,
-                fatigue_strain,
-                rutting_strain,
-                fatigue_life,
-                rutting_life,
-                min(fatigue_life, rutting_life),
-            ]
-            processed_records += 1
+                thicknesses,
+            )
 
-    LOGGER.info(
-        "Remaining-life calculation completed; processed records=%d across %d "
-        "populated chainage sections",
-        processed_records,
-        section_number,
-    )
+        output_file = _run_iitpave([bituminous_e, base_e, subgrade_e], thicknesses)
+        fatigue_strain = _get_fatigue_strain(output_file)
+        rutting_strain = _get_rutting_strain(output_file)
+        if bituminous_e <= 0 or fatigue_strain <= 0 or rutting_strain <= 0:
+            raise ValueError(
+                f"Section {section_number}: modulus and strains must be positive; "
+                f"bituminous E={bituminous_e}, fatigue strain={fatigue_strain}, "
+                f"rutting strain={rutting_strain}."
+            )
+
+        fatigue_life = (
+            (0.711 * 10**-4)
+            * ((1 / fatigue_strain) ** 3.89)
+            * ((1 / bituminous_e) ** 0.854)
+            * (10**-6)
+        )
+        rutting_life = (1.41 * 10**-8) * ((1 / rutting_strain) ** 4.5337) * (10**-6)
+        first_record["section_results"] = [
+            section_number,
+            lower_km,
+            upper_km,
+            upper_km - lower_km,
+            bituminous_e,
+            base_e,
+            subgrade_e,
+            fatigue_strain,
+            rutting_strain,
+            fatigue_life,
+            rutting_life,
+            min(fatigue_life, rutting_life),
+        ]
+        LOGGER.info(
+            "Section %d completed: %.6g-%.6g km; remaining life=%g MSA",
+            section_number,
+            lower_km,
+            upper_km,
+            first_record["section_results"][-1],
+        )
 
 
 def write_output(records, output_path):
@@ -518,10 +526,13 @@ def main():
         help="Input .xlsx/.xlsm/.xls or delimited .txt/.csv/.tsv file",
     )
     args = parser.parse_args()
-    provided_path = args.input_file or input(
-        "Enter the path to the Excel or text input file: "
+    provided_name = args.input_file or input(
+        "Enter the input filename (the file must be in the Remaining Life folder): "
     ).strip().strip('"')
-    input_path = Path(provided_path).expanduser().resolve()
+    input_name = Path(provided_name).name
+    if input_name != provided_name:
+        raise ValueError("Enter only the input filename, not a folder path.")
+    input_path = (SCRIPT_DIR / input_name).resolve()
     if not input_path.is_file():
         raise FileNotFoundError(f"Input file not found: {input_path}")
 

@@ -165,15 +165,15 @@ This script estimates the remaining life of pavement layers after applying seaso
 
 ## 5) Remaining Life/RMN_LF.py
 
-This standalone version calculates corrected moduli and remaining-life results from a compact input file, without requiring the full `Modulus_Calculation.xlsx` worksheet. It runs IITPAVE independently for every input row and writes that row's results to the corresponding output row. The output is saved beside the selected source file as `<input basename>_RMN-LF.xlsx` (for example, `survey_RMN-LF.xlsx` from `survey.xlsx`).
+This standalone version calculates the same corrected moduli and section-level remaining-life results from a compact input file, without requiring the full `Modulus_Calculation.xlsx` worksheet. The output is saved beside the selected source file as `<input basename>_RMN-LF.xlsx` (for example, `survey_RMN-LF.xlsx` from `survey.xlsx`).
 
 Run it from the repository root or from the `Remaining Life` folder:
 
 ```powershell
-python "Remaining Life\RMN_LF.py" "Remaining Life\your-input.xlsx"
+python "Remaining Life\RMN_LF.py"
 ```
 
-If no path is supplied, the script prompts for one. Excel inputs may be `.xlsx`, `.xlsm`, or `.xls`; text inputs may be tab-, comma-, or semicolon-delimited `.txt`, `.csv`, or `.tsv` files. Both formats need a header row and these eight fields:
+The input file must be in the `Remaining Life` folder; when prompted, enter only its filename (for example, `your-input.xlsx`). Excel inputs may be `.xlsx`, `.xlsm`, or `.xls`; text inputs may be tab-, comma-, or semicolon-delimited `.txt`, `.csv`, or `.tsv` files. Both formats need a header row and these eight fields:
 
 | Field | Accepted examples |
 | --- | --- |
