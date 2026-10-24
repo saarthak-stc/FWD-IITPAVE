@@ -1,1 +1,47 @@
-/__pycache__
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test and tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build output
+build/
+dist/
+*.egg-info/
+
+# Runtime logs
+*.log
+
+# Local input and output data
+*.txt
+*.text
+INPUT.log
+
+# Spreadsheets
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
+
+# Local copies and backups
+/New folder/
+/backup/
+
+# Temporary Excel lock files
+~$*.xlsx
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
