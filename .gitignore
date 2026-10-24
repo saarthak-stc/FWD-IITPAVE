@@ -21,6 +21,7 @@ dist/
 
 # Runtime logs
 *.log
+pipeline.log
 
 # Local input and output data
 *.txt
