@@ -18,17 +18,17 @@ except ImportError:
 # --------------------------------------------------------------------------- #
 # Defaults (unchanged from the text-file based script)
 # --------------------------------------------------------------------------- #
-DEFAULT_INPUT_FILE = "NHAI remuli lha3000 200 500.txt"
-DEFAULT_WORKBOOK = "Modulus_Calculation.xlsx"
-DEFAULT_SHEET = "RHS"
+DEFAULT_INPUT_FILE = "NHAI_nh_49_shambhalpur_rhs_ch_294_276_to_268_076_1.txt"
+DEFAULT_WORKBOOK = "NHAI nh 49 shambhalpur rhs ch 294 276 to 268 076 Modulus_Calculation.xlsx"
+DEFAULT_SHEET = "R1"
 INPUT_ENCODING = "utf-16"
 
 LOAD_N = 40000                      # Load(N) written to column B
 STRESS_MPA = 0.56                   # Stress(MPa) written to column C
 NORMALIZING_LOAD_KN = 40            # deflections are normalised to this load
 USE_FILE_THICKNESS = True           # True: M/N come from the .txt "Layer Thickness (mm)" columns
-THICKNESS = [115, 450]              # fallback bituminous, base (mm), used only if USE_FILE_THICKNESS is False
-E_RANGES = [400, 3000, 100, 500, 20, 200]   # bit lo/hi, base lo/hi, subgrade lo/hi (MPa)
+THICKNESS = [105, 450]              # fallback bituminous, base (mm), used only if USE_FILE_THICKNESS is False
+E_RANGES = [400, 1500, 100, 500, 20, 200]   # bit lo/hi, base lo/hi, subgrade lo/hi (MPa)
 SEASON = "Monsoon"
 MAX_DROPS_PER_POINT = 3             # drops averaged per chainage (original behaviour)
 

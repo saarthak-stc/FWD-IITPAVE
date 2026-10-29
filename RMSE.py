@@ -90,10 +90,13 @@ def get_dispz_regex(file_path):
 
 
 def RMSE_function(moduli):
-    run_iitpave_jar(
-        moduli, thickness, number_of_layers, poissons_ratio, postn
-    )
-    theoretical_deflection = np.array(get_dispz_regex(output_path), dtype=float)
+    if np.all(moduli == 0):
+        theoretical_deflection = np.zeros(defln.size, dtype=float)
+    else:
+        run_iitpave_jar(
+            moduli, thickness, number_of_layers, poissons_ratio, postn
+        )
+        theoretical_deflection = np.array(get_dispz_regex(output_path), dtype=float)
 
     if theoretical_deflection.size != defln.size:
         raise ValueError(
@@ -130,11 +133,11 @@ LOGGER.info(
 def main():
     global postn, thickness, number_of_layers, poissons_ratio, defln
 
-    workbook_path = SCRIPT_DIR / "Modulus_Calculation.xlsx"
+    workbook_path = SCRIPT_DIR / "NHAI nh 49 shambhalpur rhs ch 294 276 to 268 076 Modulus_Calculation.xlsx"
     with xw.App(visible=False) as app:
         wb1 = app.books.open(str(workbook_path))
         try:
-            ws1 = wb1.sheets["RHS"] if "RHS" in [s.name for s in wb1.sheets] else wb1.sheets[0]
+            ws1 = wb1.sheets["R1"] if "R1" in [s.name for s in wb1.sheets] else wb1.sheets[0]
             LOGGER.info("Opened workbook sheet %s", ws1.name)
             if wb1.api.ReadOnly:
                 raise PermissionError(
@@ -207,7 +210,7 @@ def main():
                 ws1.range(f"AG{row_number}").value = float(rmse_value)
 
                 LOGGER.info(
-                    "Point %d: wrote %d IITPAVE sensor deflections; RMSE=%.4f%%",
+                    "Point %d: wrote %d predicted sensor deflections; RMSE=%.4f%%",
                     row_number - 2, len(theoretical_deflection), rmse_value
                 )
                 row_number += 1
